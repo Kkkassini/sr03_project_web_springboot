@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:8889/sr03
+    url: jdbc:mysql://127.0.0.1:8889/SR03-PROJECT
     username: root
-    password: aptx4969
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:

@@ -55,6 +55,9 @@
         <div th:if="${session.isAdmin} == '1'">
             <li><a href="#" th:href="@{/ulist}" th:class="${activeUri=='ulist'? 'active':''}">><i class="icon icon-th"></i> <span>User management</span></a></li>
         </div>
+        <div>
+            <li><a href="#" th:href="@{/qlist}" th:class="${activeUri=='qlist' ? 'active' : ''}">><i class="icon icon-th"></i><span>Questions management</span></a></li>
+        </div>
         <!--<li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>网格布局</span></a></li>-->
         <!--<li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>表单</span> </a>-->
             <!--<ul>-->
