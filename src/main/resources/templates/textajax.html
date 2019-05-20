@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>测试</title>
+</head>
+<body>
+<form  action="#" method="">
+    姓名：<input type="text" name="username" id="uname" /></br>
+    密码：<input type="password" name="password" id="upassword"/></br>
+    <input type="submit" value="提交" onclick="login()"/>
+    <input type="text" id="message" th:text="${session.message}"/>
+</form>
+
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+    function login() {
+        var xmlHttp
+        var username=document.getElementById("uname").value
+        var password=document.getElementById("upassword").value
+        if(username==""&&username==null)
+        {
+            alert("姓名不能为空！！")
+        }else if(password==""&&password==null){
+            alert("密码不能为空！！")
+        }
+        try{
+            xmlHttp=new XMLHttpRequest()
+        }catch (e) {
+            xmlHttp=new ActiveXObject("Microsoft.XMLHttp")
+        }
+        xmlHttp.onreadystatechange=function(){
+            if(xmlHttp.readyState==4&&xmlHttp.status==200 ){
+                document.getElementById("mseeage").innerHTML=xmlhttp.responseText
+            }
+        }
+        xmlHttp.open("post","user/login",ture);
+        xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlHttp.send("username="+username+"&password="+password)
+
+
+
+    }
+</script>
+</body>
+</html>

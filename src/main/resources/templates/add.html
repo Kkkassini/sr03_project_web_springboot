@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add a user</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" th:href="@{/css/bootstrap-responsive.min.css}" />
+    <link rel="stylesheet" href="css/colorpicker.css" th:href="@{/css/colorpicker.css}" />
+    <link rel="stylesheet" href="css/datepicker.css" th:href="@{/css/datepicker.css}" />
+    <link rel="stylesheet" href="css/uniform.css" th:href="@{/css/uniform.css}" />
+    <link rel="stylesheet" href="css/select2.css" th:href="@{/css/select2.css}" />
+    <link rel="stylesheet" href="css/matrix-style.css" th:href="@{/css/matrix-style.css}" />
+    <link rel="stylesheet" href="css/matrix-media.css" th:href="@{/css/matrix-media.css}" />
+    <link rel="stylesheet" href="css/bootstrap-wysihtml5.css" th:href="@{/css/bootstrap-wysihtml5.css}" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.css}" />
+
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>-->
+
+</head>
+<body>
+<div th:replace="commons/bar::topbar"></div>
+<div th:replace="commons/bar::leftbar"></div>
+<div id="content">
+    <div id="content-header" >
+        <div id="breadcrumb"> <a href="#" th:href="@{/ulist}" class="tip-bottom">User management</a> <a href="#" class="current">用户添加/修改</a> </div>
+        <h1>Add/Modify a user</h1>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box" id="myModal">
+                    <div class="widget-title" > <span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>Add a user</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="#" th:action="@{/adduser}"  method="post" class="form-horizontal">
+                            <input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
+                            <input type="hidden" name="id" th:if="${user!=null}" th:value="${user.id}" />
+                            <div class="control-group">
+                                <label class="control-label">Mail :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="noob@noob.com" name="mail" th:value="${user!=null}? ${user.mail}" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Name :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Noob NOOB" name="name" th:value="${user!=null}? ${user.name}" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Password :</label>
+                                <div class="controls">
+                                    <input type="text"  class="span11" placeholder="Password" name="password" th:value="${user!=null}? ${user.password}" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">isAdmin :</label>
+                                <div class="controls">
+                                    <input type="text"  class="span11" placeholder="is_admin" name="is_admin" th:value="${user!=null}? ${user.is_admin}" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">isActive :</label>
+                                <div class="controls">
+                                    <input type="text"  class="span11" placeholder="is_active" name="is_active" th:value="${user!=null}? ${user.is_active}" />
+                                </div>
+                            </div>
+                            <!--<div class="control-group">-->
+                                <!--<label class="control-label">isAdmin :</label>-->
+                                <!--<div class="controls">-->
+                                    <!--<label>-->
+                                        <!--<input type="radio" name="is_admin" value=1 th:checked="${user!=null}?${user.getIs_admin==1}" />-->
+                                        <!--Admin</label>-->
+                                    <!--<label>-->
+                                        <!--<input type="radio" name="is_admin" value=0 th:checked="${user!=null}?${user.getIs_admin==0}" />-->
+                                        <!--Non admin-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="control-group">-->
+                                <!--<label class="control-label">isActive :</label>-->
+                                <!--<div class="controls">-->
+                                    <!--<label>-->
+                                        <!--<input type="radio" name="is_active" value=1 th:checked="${user!=null}?${user.getIs_active==1}" />-->
+                                        <!--Active</label>-->
+                                    <!--<label>-->
+                                        <!--<input type="radio" name="is_active" value=0 th:checked="${user!=null}?${user.getIs_active==0}" />-->
+                                        <!--Inactive-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="control-group">
+                                <label class="control-label">Company :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="ST Co.ltd" name="company" th:value="${user!=null}? ${user.company}" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Phone :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="0658229655" name="phone" th:value="${user!=null}? ${user.phone}" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Creation Date :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="2019-05-19" name="creation_date" th:value="${user!=null}? ${user.creation_date}" />
+                                </div>
+                            </div>
+                            <!--<div class="control-group">-->
+                                <!--<label class="control-label">Creation Date :</label>-->
+                                <!--<div class="controls">-->
+                                    <!--<input type="text" class="span11" placeholder="2019-05-19" name="creation_date" th:value="${user!=null}? ${#dates.format(user.getCreation_date,'yyyy-MM-dd HH:mm')}"  />-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success btn_edit" th:text="${user!=null}?'修改':'添加'">添加</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div></div>
+<!--Footer-part-->
+<div class="row-fluid">
+    <div id="footer" class="span12">Copyright &copy; 2018.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
+</div>
+
+<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="js/jquery.ui.custom.js" th:src="@{/js/jquery.ui.custom.js}"></script>
+<script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="js/bootstrap-colorpicker.js" th:src="@{/js/bootstrap-colorpicker.js}"></script>
+<script src="js/bootstrap-datepicker.js" th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script src="js/jquery.toggle.buttons.html" th:src="@{/js/jquery.toggle.buttons.html}"></script>
+<script src="js/masked.js" th:src="@{/js/masked.js}"></script>
+<script src="js/jquery.uniform.js" th:src="@{/js/jquery.uniform.js}"></script>
+<script src="js/select2.min.js" th:src="@{/js/select2.min.js}"></script>
+<script src="js/matrix.js" th:src="@{/js/matrix.js}"></script>
+<script src="js/matrix.form_common.js" th:src="@{/js/matrix.form_common.js}"></script>
+<script src="js/wysihtml5-0.3.0.js" th:src="@{/js/wysihtml5-0.3.0.js}"></script>
+<script src="js/jquery.peity.min.js" th:src="@{/js/jquery.peity.min.js}"></script>
+<script src="js/bootstrap-wysihtml5.js" th:src="@{/js/bootstrap-wysihtml5.js}"></script>
+
+<script>
+    $('.textarea_editor').wysihtml5();
+</script>
+
+</body>
+</html>
