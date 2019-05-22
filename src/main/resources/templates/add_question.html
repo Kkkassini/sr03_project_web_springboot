@@ -37,57 +37,21 @@
                     <div class="widget-content nopadding">
                         <form action="#" th:action="@{/addquestion}"  method="post" class="form-horizontal">
                             <input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
-                            <input type="hidden" name="id" th:if="${user!=null}" th:value="${user.id}" />
+                            <input type="hidden" name="id" th:if="${question!=null}" th:value="${question.id}" />
                             <div class="control-group">
-                                <label class="control-label">Mail :</label>
+                                <label class="control-label">Title :</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="noob@noob.com" name="mail" th:value="${user!=null}? ${user.mail}" />
+                                    <input type="text" class="span11" placeholder="Title" name="title" th:value="${question!=null}? ${question.title}" />
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Name :</label>
+                                <label class="control-label">Good Answer :</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="Noob NOOB" name="name" th:value="${user!=null}? ${user.name}" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Password :</label>
-                                <div class="controls">
-                                    <input type="text"  class="span11" placeholder="Password" name="password" th:value="${user!=null}? ${user.password}" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">isAdmin :</label>
-                                <div class="controls">
-                                    <input type="text"  class="span11" placeholder="is_admin" name="is_admin" th:value="${user!=null}? ${user.is_admin}" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">isActive :</label>
-                                <div class="controls">
-                                    <input type="text"  class="span11" placeholder="is_active" name="is_active" th:value="${user!=null}? ${user.is_active}" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Company :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="ST Co.ltd" name="company" th:value="${user!=null}? ${user.company}" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Phone :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="0658229655" name="phone" th:value="${user!=null}? ${user.phone}" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Creation Date :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="2019-05-19" name="creation_date" th:value="${user!=null}? ${user.creation_date}" />
+                                    <input type="text" class="span11" placeholder="Good Answer" name="good_answer" th:value="${question!=null}? ${question.good_answer}" />
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-success btn_edit" th:text="${user!=null}?'修改':'添加'">添加</button>
+                                <button type="submit" class="btn btn-success btn_edit" th:text="${question!=null}?'修改':'添加'">添加</button>
                             </div>
                         </form>
                     </div>
