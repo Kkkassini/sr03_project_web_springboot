@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Question management</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" th:href="@{/css/bootstrap-responsive.min.css}" />
+    <link rel="stylesheet" href="css/uniform.css" th:href="@{/css/uniform.css}" />
+    <link rel="stylesheet" href="css/select2.css"  th:href="@{/css/select2.css}"/>
+    <link rel="stylesheet" href="css/matrix-style.css" th:href="@{/css/matrix-style.css}" />
+    <link rel="stylesheet" href="css/matrix-media.css" th:href="@{/css/matrix-media.css}" />
+    <link href="font-awesome/css/font-awesome.css" th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+
+
+
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css' />-->
+</head>
+<body>
+
+
+
+<div th:replace="commons/bar::topbar"></div>
+<div th:replace="commons/bar::leftbar"></div>
+<div id="content">
+
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+            <div class="span12">
+                <h2><a class="btn btn-sm btn-success" href="question" th:href="@{/question}">Create a question</a></h2>
+
+                <div class="widget-box" id="myModal">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>Data table</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>isActive</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="gradeX" th:each="question:${question}">
+                                <td th:text="${question.title}"></td>
+                                <td th:text="${question.is_active}==0? 'Inactive':'Active'"></td>
+                                <td>
+q                                    <button th:attr="del_uri=@{/qlist/}+${question.id}" class="btn btn-sm btn-danger deleteBtn" >Delete</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <form id="deleteQuestion"  method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--Footer-part-->
+<div class="row-fluid">
+    <div id="footer" class="span12">SpringBoot-Jpa &copy; 2019.4.12整合 Demo<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
+</div>
+<!--end-Footer-part-->
+<script src="js/jquery.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script src="js/jquery.ui.custom.js" th:src="@{/js/jquery.ui.custom.js}"></script>
+<script src="js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+<script src="js/jquery.uniform.js" th:src="@{/js/jquery.uniform.js}"></script>
+<script src="js/select2.min.js" th:src="@{/js/select2.min.js}"></script>
+<script src="js/jquery.dataTables.min.js" th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script src="js/matrix.js" th:src="@{/js/matrix.js}"></script>
+<script src="js/matrix.tables.js" th:src="@{/js/matrix.tables.js}"></script>
+
+
+
+
+<script>
+    $(".deleteBtn").click(function(){
+        $("#deleteQuestion").attr("action",$(this).attr("del_uri")).submit();
+
+        return false ;
+    });
+</script>
+<script>
+</script>
+</body>
+</html>
