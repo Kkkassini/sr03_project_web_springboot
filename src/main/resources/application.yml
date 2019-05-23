@@ -5,10 +5,9 @@ spring:
     password: aptx4969
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
-      #      更新或者创建数据表结构
       ddl-auto: update
-    #      控制台显示sql
     show-sql: true
   thymeleaf:
     cache: false
