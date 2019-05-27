@@ -1,18 +1,99 @@
 package ng.bq.springbootjba.entity;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import java.util.Calendar;
+import java.util.List;
+
 @Entity
-@Table(name = "QUESTION")
-@Data
-public class Question {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
-    private String title;
-    @Column
-    private String good_answer;
-    @Column
-    private Integer is_active;
+@Table(name = "question")
+public class Question extends Base implements UserOwned {
+
+    @Size(min = 2, max = 150, message = "The question should be between 2 and 150 characters")
+    @NotNull(message = "Question text not provided")
+    private String text;
+
+    @ManyToOne
+    @JsonIgnore
+    private Quiz quiz;
+
+    @Column(name = "q_order")
+    private Integer order;
+
+    //@JsonIgnore
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Answer> answers;
+
+    @JsonIgnore
+    @OneToOne
+    private Answer correctAnswer;
+
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+    private Calendar createdDate;
+
+    @JsonIgnore
+    private Boolean isValid = false;
+
+    public Calendar getCreatedDate() {
+        return createdDate;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    @JsonIgnore
+    public User getUser() {
+        return quiz.getUser();
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public Boolean getIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(Boolean isValid) {
+        this.isValid = isValid;
+    }
+
+    public Answer getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(Answer correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
 }

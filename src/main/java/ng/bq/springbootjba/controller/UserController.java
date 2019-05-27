@@ -30,7 +30,6 @@ public class UserController {
         return "tables";
     }
 
-    //来到添加页面
     @GetMapping("/user")
     public String toAdd(Model model){
 //        List<User> list=userService.findAll();
@@ -39,38 +38,33 @@ public class UserController {
     }
 
 
-    //添加操作
     @RequestMapping(value = "/adduser",method = RequestMethod.POST)
     public String insertUser(User user,Map<String,Object> map){
         userDao.save(user);
-        map.put("msg","添加成功!!!");
+        map.put("msg","User added");
         return "redirect:/ulist";
     }
 
-    //删除
     @DeleteMapping("/ulist/{id}")
     public String delete(User user){
         userDao.delete(user);
-        System.out.println("删除数据");
+        System.out.println("User deleted");
         return  "redirect:/ulist";
     }
 
-    //来到修改页面，查出当前员工，在页面的回显
     @GetMapping("/ulist/{id}")
     public  String toEditPage(@PathVariable("id") Integer id,Model model){
         User user=userDao.getUserById(id);
         model.addAttribute("user",user);
 
-        //回到修改页面（add是一个修改添加二合一的页面）
         return "add";
     }
 
-    //员工修改,需要提交员工id
     @PutMapping("/adduser")
     public String updateUser(User user, Map<String,Object> map){
         userDao.save(user);
-        map.put("msg","修改成功");
-        System.out.println("修改数据");
+        map.put("msg","User modified");
+        System.out.println("User modified");
         return "redirect:/ulist";
 
     }
